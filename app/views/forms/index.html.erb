@@ -1,0 +1,53 @@
+<h1>salut</h1>
+
+<%= form_for :form do |f| %>
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+ 
+  <p>
+    <%= f.label :comment %><br>
+    <%= f.text_area :comment %>
+  </p>
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+<h2>Liste</h2>
+
+<% @forms.each do |form| %>
+    <ul>
+      <li>
+	  <%= form.title %> ::
+	  <%= form.comment %> ::
+	  <%= link_to 'Show', form_path(form) %> ::
+	  <%= link_to 'Edit', edit_form_path(form) %> ::
+	  <%= link_to 'Destroy', form_path(form),
+                    method: :delete, data: { confirm: 'Are you sure?' } %>
+	  </li>
+	</ul>
+  <% end %>
+  
+<table border width=60% align="center">
+  <tr>
+    <th>Title</th>
+    <th>Comment</th>
+	<th>Show</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+ 
+<% @forms.each do |form| %>
+  <tr>
+    <td><%= form.title %></td>
+    <td><%= form.comment %></td>
+    <td><%= link_to 'Show', form_path(form) %></td>
+    <td><%= link_to 'Edit', edit_form_path(form) %></td> 
+	<td><%= link_to 'Destroy', form_path(form),
+                    method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
